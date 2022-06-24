@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Book Stock</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="Aplicação de gerenciamento de estoque de livros" />
+	<meta name="author" content="Login" />
+	<link rel="icon" th:href="@{/image/favicon.png}" />
+
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
+	
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body style="background-color: #DCDCDC">
+
+	<div class="d-flex justify-content-center">
+		<section layout:fragment="corpo">
+			Layout Usado para as telas de login e cadastro de usuario
+		</section>	
+	</div>
+	
+	<script	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>	
+	
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout-login}">
+<head>
+	<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section layout:fragment="corpo" style="margin-top: 10%;">
+		<div class="text-nowrap bg-light shadow-sm p-3 mb-5 rounded" style="width: 30rem;">
+			<form id="login" th:action="@{/login}" method="post" novalidate>
+				<div th:if="${alerta != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+				  	<i class="oi oi-warning bi flex-shrink-0 me-2"></i>
+					<div style="display: inline" th:text="${texto}"></div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				
+				<h3 style="color: #777777" align="center">Entre com suas credenciais</h3>
+				<br>
+				<div class="mb-3">
+				  <label for="email" class="form-label">E-mail</label>
+				  <input type="email" name="username" class="form-control" id="emailLogin" aria-describedby="emailHelp">
+				  <div id="emailHelp" class="form-text">Digite seu e-mail cadastrado</div>
+				  <div id="emailError" class="alert alert-danger" hidden="true" role="alert">
+				  	Digite o e-mail corretamente!
+				  </div>
+				</div>
+				<div class="mb-3">
+				  <label for="password" class="form-label">Senha</label>
+				  <input type="password" name="password" class="form-control" id="passwordLogin">
+				  <div id="passWordHelp" class="form-text">Digite sua senha cadastrada</div>
+				  <div id="passWordError" class="alert alert-danger alert-dismissible fade show" hidden="true" role="alert">
+				  	A senha deve conter de 5 a 8 caracteres!
+				  </div>
+				</div>
+				<button type="submit" class="btn btn-primary">Acessar</button>
+			</form>
+		</div>
+	</section>
+	
+</body>
+</html>

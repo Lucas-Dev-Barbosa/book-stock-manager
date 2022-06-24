@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section layout:fragment="corpo" style="margin-top: 10%;">
+	
+		<span th:replace="fragments/modal :: editar-usuario"></span>
+		<span th:if="${usuario != null}" id="controle-modal" data-bs-modal-id="modal-editar-usuario" hidden="true"></span>
+		
+		<div style="width: 70rem;">
+			<h2>Lista dos usuários do sistema</h2>
+			
+			<table class="table table-striped table-hover">
+				<thead>
+				   <tr>
+				     <th scope="col">#</th>
+				     <th scope="col">Nome</th>
+				     <th scope="col">Sobrenome</th>
+				     <th scope="col">E-mail</th>
+				     <th scope="col">Ativo</th>
+				     <th scope="col">Perfil</th>
+				     <th></th>
+				     <th></th>
+				   </tr>
+				 </thead>
+				 <tbody>
+				   <tr th:each="u : ${paginaUsuarios.registros}">
+				     <th th:text="${u.id}" scope="row">1</th>
+				     <td th:text="${u.nome}">Nome</td>
+				     <td th:text="${u.sobrenome}">Sobrenome</td>
+				     <td th:text="${u.email}">E-mail</td>
+				     <td th:text="${u.ativo == true ? 'Ativo' : 'Inativo'}">Ativo</td>
+				     <td th:text="${u.perfil.nome}">Perfil</td>
+				     <td><a th:href="@{/usuario/pre-editar/{id} (id=${u.id})}"><i style="color: green;" title="Editar" class="oi oi-pencil"></i></a></td>
+				     <td><a><i style="color: red;" class="oi oi-x"></i></a></td>
+				   </tr>
+				 </tbody>
+			</table>
+		</div>
+	</section>
+	
+</body>
+</html>

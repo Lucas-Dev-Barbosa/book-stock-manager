@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<body>
+
+	<div id="alerta" class="alerta" th:fragment="alerta-sucesso">
+		<div class="modal fade" id="modal-sucesso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Sucesso</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p th:text="${sucesso}"></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+</body>

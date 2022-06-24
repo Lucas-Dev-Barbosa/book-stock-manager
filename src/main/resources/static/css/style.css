@@ -1,0 +1,17 @@
+/*
+ * Footer
+ */
+.footer-copy {
+	font-size: 92%;
+	display: block;
+	color: #777777;
+	margin-left: 40%;
+}
+
+.sidebar-link {
+	font-size: 18px;
+}
+
+.sidebar-link:hover {
+	color: #777777;
+}
