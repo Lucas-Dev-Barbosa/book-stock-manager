@@ -46,12 +46,26 @@ public class UsuarioService implements UserDetailsService {
 		repository.save(usuario);
 	}
 	
-	public PaginacaoUtil<Usuario> buscaUsuariosPorPaginacao(int pagina, String direcao) {
-		return usuarioRepositoryEm.buscaUsuariosPorPaginacao(pagina, direcao);
+	public PaginacaoUtil<Usuario> buscaUsuariosPorPaginacao(int pagina, String direcao, String busca) {
+		return usuarioRepositoryEm.buscaUsuariosPorPaginacao(pagina, direcao, busca);
 	}
 
 	public Usuario buscarUsuarioPorId(long id) {
 		return repository.findById(id).orElse(null);
+	}
+	
+	public Usuario buscarUsuarioPorEmail(String email) {
+		return repository.findByEmailAndAtivo(email).orElse(null);
+	}
+
+	public void editarUsuario(Usuario usuario) {
+		Usuario usuarioBanco = buscarUsuarioPorId(usuario.getId());
+		usuario.setSenha(usuarioBanco.getSenha());
+		repository.save(usuario);
+	}
+
+	public void excluirUsuario(long id) {
+		repository.deleteById(id);
 	}
 
 }

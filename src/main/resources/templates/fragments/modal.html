@@ -5,21 +5,23 @@
 <body>
 
 	<div id="alerta" class="alerta" th:fragment="editar-usuario">
-		<div class="modal fade" id="modal-editar-usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-scrollable">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Sucesso</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        <p th:text="${sucesso}"></p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div>
+		<div th:if="${usuario != null}" class="modal fade" id="modal-js-editar-usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-scrollable" style="width: 80rem;">
+		  	<form class="row g-3" id="cadastroUsuario" th:action="@{/usuario/editar}" th:object="${usuario}" method="post" novalidate>
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Informações do Usuário</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <span th:replace="usuario/inf-usuario :: dados-usuario"></span>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+		    </form>
 		  </div>
 		</div>
 	</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section layout:fragment="corpo" style="margin-top: 10%;">
+	
+		<div style="width: 50rem; margin-bottom: 100px;">
+			<h2 style="margin-bottom: 30px;">Perfil do Usuário</h2>
+			
+			<div class="row mb-3">
+				<div class="row mb-3">
+					<span>Nome</span>
+					<div class="col-sm-10">
+				  		<span class="fs-3" th:text="${usuario.nome + ' ' + usuario.sobrenome}"></span>  
+				  	</div>
+				</div>
+				
+				<div class="row mb-3">
+					<span>E-mail</span>
+					<div class="col-sm-10">
+				  		<span class="fs-3" th:text="${usuario.email}"></span>  
+				  	</div>
+				</div>
+				
+				<div class="row mb-3">
+					<span>Perfil de acesso</span>
+					<div class="col-sm-10">
+				  		<span class="fs-3" th:text="${#strings.capitalize(#strings.toLowerCase(usuario.perfil.nome))}"></span>  
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+</body>
+</html>

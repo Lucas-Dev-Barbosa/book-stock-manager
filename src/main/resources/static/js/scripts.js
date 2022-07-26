@@ -66,8 +66,12 @@ $("#emailLogin").keyup(function() {
 //SENHA
 function validaSenha() {
 	var senha = $("#passwordLogin").val();
+	var idUsuario = $("#id-usuario");
 
 	if (!senha || senha.length < 5 || senha.length > 8) {
+		if(idUsuario.val()) {
+			return true;
+		}
 		return false;
 	}
 
@@ -156,10 +160,10 @@ $("#cadastroUsuario").submit(function(event) {
 
 //Controlle dos modais da aplicacao
 function controleModal(){
-	var controleModal = document.getElementById('controle-modal');
+	var modal = document.querySelector('div[id*=modal-js]');
 	
-	if(controleModal){
-		const myModal = new bootstrap.Modal(document.getElementById(controleModal.getAttribute('data-bs-modal-id')));
+	if(modal){
+		const myModal = new bootstrap.Modal(modal);
 		myModal.show();	
 	}
 }

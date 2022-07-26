@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <body>
 
-	<div id="alerta" class="alerta" th:fragment="alerta-sucesso">
-		<div class="modal fade" id="modal-sucesso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="alerta" th:fragment="alerta-sucesso">
+		<div th:if="${sucesso != null}" class="modal fade" id="modal-js-sucesso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -14,6 +14,26 @@
 		      </div>
 		      <div class="modal-body">
 		        <p th:text="${sucesso}"></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	<div class="alerta" th:fragment="alerta-excluir-usuario">
+		<div th:if="${id != null}" class="modal fade" id="modal-js-excluir-usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Alerta</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Têm certeza que deseja excluir este usuário?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		        <a th:href="@{/usuario/excluir/{id} (id=${id})}" type="button" class="btn btn-primary">Excluir</a>
 		      </div>
 		    </div>
 		  </div>
