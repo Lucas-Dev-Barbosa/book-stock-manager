@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section layout:fragment="corpo" style="margin-top: 10%;">
+		
+		<div style="width: 70rem;">
+			<span th:replace="fragments/alert :: alerta-excluir-livro"></span>
+			<span th:replace="fragments/alert :: alerta-sucesso"></span>
+		
+			<div class="row g-3">
+				<div class="col-auto">
+					<h2>Detalhes do livro</h2>
+				</div>
+				<div sec:authorize="hasAuthority('ADMINISTRADOR')" class="col-auto dropend">
+				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+				    <i class="oi oi-cog"></i>
+				  </a>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				  	<li><a th:href="@{/estoque/listar(filtro=${estoque.livro.titulo}, rota='estoque')}" class="dropdown-item"><i class="oi oi-folder"></i> Estoque</a></li>
+				  	<li><a th:href="@{/estoque/detalhar-livro/{id} (id=${estoque.livro.id}, funcao='editar')}" class="dropdown-item"><i class="oi oi-pencil"></i> Editar</a></li>
+				  	<li><hr class="dropdown-divider"></li>
+				  	<li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="oi oi-delete"></i> Excluir</a></li>
+				  </ul>
+				</div>
+			</div>
+			
+			<br>
+			
+			<div class="row g-0" style="margin-bottom: 100px;">
+			    <div class="col-md-4">
+			      <img th:src="@{${'data:image/jpeg;base64,' + estoque.livro.fotoCapaBase64}}" class="img-fluid rounded-start" alt="Imagem Capa">
+			    </div>
+			    <div class="col-md-8">
+			      <div class="card-body">
+			      	<h3 th:text="${estoque.livro.titulo}" class="card-title"></h3>
+			      	
+			      	<br>
+			      	
+			      	<dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">Editora: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${estoque.livro.editora}" class="card-text"></p></dd>
+					</dl>
+			        
+			        <dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">Autor: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${estoque.livro.autor}" class="card-text"></p></dd>
+					</dl>
+					
+					<dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">ISBN: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${estoque.livro.isbn}" class="card-text"></p></dd>
+					</dl>
+					
+					<dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">Preço: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${#numbers.formatCurrency(estoque.livro.preco)}" class="card-text"></p></dd>
+					</dl>
+					
+					<dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">Data da Publicação: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${#dates.format(estoque.livro.dataPublicacao, 'dd/MM/yyyy')}" class="card-text"></p></dd>
+					</dl>
+					
+					<dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">Status Disponibilidade: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${estoque.emEstoque > 0 ? 'Disponível' : 'Indisponível'}" class="card-text"></p></dd>
+					</dl>
+					
+					<dl class="row">
+					  <dt class="col-sm-5"> <span class="fw-semibold">Número de Páginas: </span> </dt>
+					  <dd class="col-sm-7"><p th:text="${estoque.livro.numeroPaginas}" class="card-text"></p></dd>
+					</dl>
+			        
+			        <p th:text="${estoque.livro.sinopse}" class="card-text"></p>
+			      </div>
+			    </div>
+			  </div>
+			
+		</div>
+	</section>
+	
+</body>
+</html>

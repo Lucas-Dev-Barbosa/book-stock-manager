@@ -40,4 +40,37 @@
 		</div>
 	</div>
 	
+	<div th:fragment="alerta-mensagens-erro">
+		<div th:if="${#fields.hasAnyErrors()}" id="formError">
+	  		<div th:each="err : ${#fields.allErrors()}" class="alert alert-danger alert-dismissible fade show" role="alert">
+			  	<i class="oi oi-warning bi flex-shrink-0 me-2"></i>
+				<div style="display: inline" th:text="${err}"></div>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+	  	</div>
+	  	<div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+		  	<i class="oi oi-warning bi flex-shrink-0 me-2"></i>
+			<div style="display: inline" th:text="${error}"></div>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</div>
+	
+	<div th:fragment="alerta-excluir-livro" class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Excluir livro</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <p>Têm certeza que deseja excluir este título do catálogo?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	        <a th:href="@{/estoque/excluir-livro/{idEstoque} (idEstoque=${estoque.id})}" type="button" class="btn btn-primary">Excluir</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
 </body>

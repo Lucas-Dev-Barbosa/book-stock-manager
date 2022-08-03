@@ -32,6 +32,12 @@ public class SecurityConfig {
 		.antMatchers("/usuario/cadastro", "/usuario/cadastrar", "/usuario/listar", "/usuario/pre-editar/*", "/usuario/editar")
 		.hasAnyAuthority(ADMINISTRATOR)
 		
+		.antMatchers("/estoque/cadastro-livro", "/estoque/salvar-livro", "/estoque/excluir-livro/**")
+		.hasAnyAuthority(ADMINISTRATOR)
+		
+		.antMatchers("/estoque/listar", "/estoque/detalhar-livro/**")
+		.hasAnyAuthority(ADMINISTRATOR, OPERADOR)
+		
 		.antMatchers("/")
 		.hasAnyAuthority(ADMINISTRATOR, OPERADOR)
 		

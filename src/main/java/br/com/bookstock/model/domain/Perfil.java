@@ -2,6 +2,7 @@ package br.com.bookstock.model.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -14,10 +15,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "t_perfil", uniqueConstraints = @UniqueConstraint(columnNames = {"nome"}))
+@Table(name = "t_perfil", uniqueConstraints = @UniqueConstraint(columnNames = { "nome" }))
 @SuppressWarnings("serial")
 public class Perfil extends AbstractEntity {
 
+	@Column(length = 50)
 	private String nome;
 	
 	private String descricao;

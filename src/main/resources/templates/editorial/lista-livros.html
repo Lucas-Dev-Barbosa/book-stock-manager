@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section layout:fragment="corpo" style="margin-top: 10%;">
+		
+		<div style="width: 70rem; margin-bottom: 100px;">
+			<span th:replace="fragments/alert :: alerta-sucesso"></span>
+			
+			<h2>Lista dos livros cadastrados no sistema</h2>
+			
+			<br>
+			
+			<form th:action="@{/estoque/listar}" method="get" class="row g-3">
+				<div class="col-auto input-group" style="width: 500px; margin-bottom: 30px;">
+				  	<div class="input-group-text">Título do livro</div>
+					<input type="text" name="filtro" class="form-control" autofocus>
+					<input type="text" name="rota" value="livros" hidden="true">
+				</div>
+				<div class="col-auto">
+				  <button type="submit" class="btn btn-primary">Filtrar</button>
+				</div>
+			</form>
+			
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div th:if="${paginaEstoque.registros.size() == 0}" class="col"><p>Não existem livros cadastrados no estoque!</p></div>
+				
+				<div th:each="e : ${paginaEstoque.registros}" class="col">
+					<div class="card mb-3" style="height: 180px">
+					  <div class="row g-0">
+					    <div class="col-md-4">
+					      <img th:src="@{${'data:image/jpeg;base64,' + e.livro.fotoCapaBase64}}" class="img-fluid rounded-start" alt="Imagem Capa" style="height: 180px">
+					    </div>
+					    <div class="col-md-8">
+					      <div class="card-body">
+					        <h5 th:text="${e.livro.titulo}" class="card-title text-truncate"></h5>
+					        <p th:text="${e.livro.sinopse}" class="card-text text-truncate"></p>
+					        <p th:text="${e.livro.autor}" class="card-text text-muted text-truncate"></p>
+					        <p th:text="${e.emEstoque > 0 ? 'Disponível' : 'Indisponível'}" class="card-text text-muted"></p>
+					      </div>
+					    </div>
+					  </div>
+					  <a th:href="@{/estoque/detalhar-livro/{id} (id=${e.livro.id})}" class="stretched-link"></a>
+					</div>
+				</div>
+			</div>
+			
+			<nav aria-label="Navegação de página">
+			  <ul class="pagination justify-content-center">
+			  	<li th:class="${paginaEstoque.numPagina} == 1 ? 'page-item disabled' : 'page-item'">
+			      <a th:href="@{/estoque/listar(pagina=1, filtro=${paginaEstoque.filtro})}" class="page-link" tabindex="-1"><i class="oi oi-media-skip-backward"></i></a>
+			    </li>
+			    <li th:class="${paginaEstoque.numPagina} == 1 ? 'page-item disabled' : 'page-item'">
+			      <a th:href="@{/estoque/listar(pagina=${paginaEstoque.numPagina - 1}, filtro=${paginaEstoque.filtro})}" class="page-link" tabindex="-1"><i class="oi oi-media-step-backward"></i></a>
+			    </li>
+			    <li th:class="page-item">
+			    	<a th:text="${paginaEstoque.numPagina}" class="page-link"></a>
+			    </li>
+			    <li th:class="${paginaEstoque.numPagina == paginaEstoque.totalPaginas || paginaEstoque.totalPaginas == 0} ? 'page-item disabled' : 'page-item'">
+			      <a class="page-link" th:href="@{/estoque/listar(pagina=${paginaEstoque.numPagina + 1}, filtro=${paginaEstoque.filtro})}"><i class="oi oi-media-step-forward"></i></a>
+			    </li>
+			    <li th:class="${paginaEstoque.numPagina == paginaEstoque.totalPaginas || paginaEstoque.totalPaginas == 0} ? 'page-item disabled' : 'page-item'">
+			      <a class="page-link" th:href="@{/estoque/listar(pagina=${paginaEstoque.totalPaginas}, filtro=${paginaEstoque.filtro})}"><i class="oi oi-media-skip-forward"></i></a>
+			    </li>
+			 </ul>
+			 <div class="pagination justify-content-center">
+			 	<span class="text-muted" th:text="${'Páginas ' + (paginaEstoque.totalPaginas == 0 ? '0' : paginaEstoque.numPagina) + ' de ' + paginaEstoque.totalPaginas}"></span>
+			 </div>
+			</nav>
+			
+		</div>
+	</section>
+	
+</body>
+</html>

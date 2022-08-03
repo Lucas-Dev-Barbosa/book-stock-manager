@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -16,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "t_usuario", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
+@Table(name = "t_usuario")
 public class Usuario extends AbstractEntity {
 
 	@NotBlank(message = "Digite o nome.")

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
 </head>
@@ -23,7 +24,8 @@
 				        </a>
 				        
 				        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				          <li><a href="#" class="dropdown-item" style="text-decoration: none;">Cadastro de Livros</a></li>
+				          <li sec:authorize="hasAuthority('ADMINISTRADOR')"><a th:href="@{/estoque/cadastro-livro}" class="dropdown-item" style="text-decoration: none;">Cadastro de Livros</a></li>
+				          <li><a th:href="@{/estoque/listar(rota='livros')}" class="dropdown-item" style="text-decoration: none;">Livros Cadastrados</a></li>
 				        </ul>
 				      </li>
 				      <li class="nav-item dropdown">
@@ -32,7 +34,7 @@
 				        </a>
 				     
 				        <ul class="dropdown-menu">
-				          <li><a href="#" class="dropdown-item" style="text-decoration: none">Estoque</a></li>
+				          <li><a th:href="@{/estoque/listar(rota='estoque')}" class="dropdown-item" style="text-decoration: none">Estoque</a></li>
 				        </ul>
 				      </li>
 				    </ul>

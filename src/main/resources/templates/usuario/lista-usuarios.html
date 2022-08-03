@@ -14,6 +14,8 @@
 		<div style="width: 70rem; margin-bottom: 100px;">
 			<h2>Lista dos usuários do sistema</h2>
 			
+			<br>
+			
 			<form th:action="@{/usuario/listar}" method="get" class="row g-3">
 				<div class="col-auto input-group" style="width: 500px; margin-bottom: 30px;">
 				  	<div class="input-group-text">Nome/Sobrenome/E-mail</div>
@@ -61,13 +63,16 @@
 			    <li th:class="page-item">
 			    	<a th:text="${paginaUsuarios.numPagina}" class="page-link"></a>
 			    </li>
-			    <li th:class="${paginaUsuarios.numPagina == paginaUsuarios.totalPaginas} ? 'page-item disabled' : 'page-item'">
+			    <li th:class="${paginaUsuarios.numPagina == paginaUsuarios.totalPaginas || paginaUsuarios.totalPaginas == 0} ? 'page-item disabled' : 'page-item'">
 			      <a class="page-link" th:href="@{/usuario/listar(pagina=${paginaUsuarios.numPagina + 1}, filtro=${paginaUsuarios.filtro})}"><i class="oi oi-media-step-forward"></i></a>
 			    </li>
-			    <li th:class="${paginaUsuarios.numPagina == paginaUsuarios.totalPaginas} ? 'page-item disabled' : 'page-item'">
+			    <li th:class="${paginaUsuarios.numPagina == paginaUsuarios.totalPaginas || paginaUsuarios.totalPaginas == 0} ? 'page-item disabled' : 'page-item'">
 			      <a class="page-link" th:href="@{/usuario/listar(pagina=${paginaUsuarios.totalPaginas}, filtro=${paginaUsuarios.filtro})}"><i class="oi oi-media-skip-forward"></i></a>
 			    </li>
 			  </ul>
+			  <div class="pagination justify-content-center">
+			 	<span class="text-muted" th:text="${'Páginas ' + (paginaUsuarios.totalPaginas == 0 ? '0' : paginaUsuarios.numPagina) + ' de ' + paginaUsuarios.totalPaginas}"></span>
+			  </div>
 			</nav>
 		</div>
 	</section>

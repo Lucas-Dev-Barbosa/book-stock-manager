@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bookstock.model.domain.Usuario;
+import br.com.bookstock.model.domain.paginacao.repository.UsuarioPaginacaoRepository;
 import br.com.bookstock.model.domain.repository.UsuarioRepository;
-import br.com.bookstock.model.domain.repository.UsuarioRepositoryEm;
 import br.com.bookstock.util.PaginacaoUtil;
 import lombok.extern.java.Log;
 
@@ -24,7 +24,7 @@ public class UsuarioService implements UserDetailsService {
 	private UsuarioRepository repository;
 	
 	@Autowired
-	private UsuarioRepositoryEm usuarioRepositoryEm;
+	private UsuarioPaginacaoRepository paginacaoRepository;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -47,7 +47,7 @@ public class UsuarioService implements UserDetailsService {
 	}
 	
 	public PaginacaoUtil<Usuario> buscaUsuariosPorPaginacao(int pagina, String direcao, String busca) {
-		return usuarioRepositoryEm.buscaUsuariosPorPaginacao(pagina, direcao, busca);
+		return paginacaoRepository.buscaPorPaginacao(pagina, direcao, busca, 10);
 	}
 
 	public Usuario buscarUsuarioPorId(long id) {

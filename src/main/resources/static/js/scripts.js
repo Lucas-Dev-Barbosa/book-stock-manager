@@ -158,7 +158,7 @@ $("#cadastroUsuario").submit(function(event) {
 });
 
 
-//Controlle dos modais da aplicacao
+//Controle dos modais da aplicacao
 function controleModal(){
 	var modal = document.querySelector('div[id*=modal-js]');
 	
@@ -168,3 +168,27 @@ function controleModal(){
 	}
 }
 controleModal();
+
+//Validacao de disponibilidade de estoque no formulario de cadastro de livro
+$("#emEstoque").change(function() {
+	var quantidade = $(this).val();
+	alteraStatusDisponibilidade(quantidade);
+});
+
+$("#emEstoque").ready(function() {
+	var quantidade = $("#emEstoque").val(); //Foi necessario obter o elemento novamente pois seu valor estava ficando vazio
+	alteraStatusDisponibilidade(quantidade);
+});
+
+function alteraStatusDisponibilidade(quantidade){
+	var status = $("#statusDisponibilidade");
+	
+	if(quantidade > 0){
+		status.text("Produto Disponível");
+	} else if(quantidade == 0) {
+		console.log('Quantidade ' + quantidade);
+		status.text("Produto Indisponível");
+	} else {
+		status.text("");
+	}
+}

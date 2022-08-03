@@ -2,12 +2,14 @@ package br.com.bookstock.model.domain.repository;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.bookstock.model.domain.Usuario;
 
-public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	Optional<Usuario> findByEmail(String email);
 
